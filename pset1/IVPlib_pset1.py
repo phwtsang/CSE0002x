@@ -168,6 +168,7 @@ def solve(thisIVP, dt, method):
     #### BEGIN SOLUTION #####
     tF = thisIVP.get_tF()
     while (tF-t[-1]) > dt/100.:
+    #while t[-1]<tF:
         #t_next = t[-1] + dt
         #print(t_next)
         t.append(t[-1] + dt)
