@@ -167,9 +167,10 @@ def solve(thisIVP, dt, method):
     # Loop from t=tI to t>=tF
     #### BEGIN SOLUTION #####
     tF = thisIVP.get_tF()
-    while t[-1] < tF:
+    while (tF-t[-1]) > dt/100.:
         t_next = t[-1] + dt
         print(t_next)
         t.append(t_next)
+        u.append(method(thisIVP,dt,u[-1],t[-1]))
     return t,u
     #### END SOLUTION ####
