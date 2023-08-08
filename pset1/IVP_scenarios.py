@@ -214,7 +214,7 @@ if __name__ == '__main__':
 
     # You may change the following list to set the tests you would like to run
     #tests_to_run = [run_test0, run_test1, run_test2, run_test3, run_test4]
-    tests_to_run = [run_test0]
+    tests_to_run = [run_test0, run_test1, run_test2]
 
     # You may change the following list to set the methods you would like to run on each test
     methods_to_test = [IVPlib.step_FE]
