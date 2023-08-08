@@ -1,7 +1,7 @@
 ################################################################################
 # CSE.0002x
 # Problem Set 1: IVPlib_pset1
-# Name:
+# edX Username: wtsang5c3a
 
 """
 This Python library is useful in solving Initial Value Problems (IVP).
@@ -166,5 +166,10 @@ def solve(thisIVP, dt, method):
 
     # Loop from t=tI to t>=tF
     #### BEGIN SOLUTION #####
-    raise NotImplementedError("Solve an IVP and output the t and u history")
+    tF = thisIVP.get_tF()
+    while t[-1] < tF:
+        t_next = t[-1] + dt
+        print(t_next)
+        t.append(t_next)
+    return t,u
     #### END SOLUTION ####
