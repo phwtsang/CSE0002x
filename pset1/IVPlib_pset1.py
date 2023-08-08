@@ -130,7 +130,47 @@ def step_RK4(thisIVP, dt, un, tn):
         float list: next state, i.e. u(tn+dt)
     """
     #### BEGIN SOLUTION ####
-    raise NotImplementedError("Implement step_RK4")
+    a = []
+    ub = []
+    b = []
+    uc = []
+    c = []
+    ud = []
+    d = []
+    un1 = []
+
+    fa = thisIVP.evalf(un, tn)
+
+    for i in range(len(un)):
+        a.append(dt*fa[i])
+
+    for i in range(len(un)):  
+        ub.append(un[i]+a[i]/2)
+
+    fb = thisIVP.evalf(ub, tn+dt/2)
+
+    for i in range(len(un)):
+        b.append(dt*fb[i])
+
+    for i in range(len(un)):
+        uc.append(un[i]+b[i]/2)
+
+    fc = thisIVP.evalf(uc, tn+dt/2)
+
+    for i in range(len(un)):
+        c.append(dt*fc[i])
+
+    for i in range(len(un)):
+        ud.append(un[i]+c[i])    
+
+    fd = thisIVP.evalf(ud, tn+dt)
+
+    for i in range(len(un)):
+        d.append(dt*fd[i])
+
+    for i in range(len(un)):
+        un1.append(un[i] + 1/6*(a[i]+2*b[i]+2*c[i]+d[i]))
+
     #### END SOLUTION ####
 
 
