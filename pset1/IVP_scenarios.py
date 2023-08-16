@@ -4,9 +4,10 @@
 # DO NOT MODIFY THIS FILE!
 # (except to uncomment methods_to_test in the '__main__' block)
 
+import math
 from IVPlib_pset1 import IVP
 import IVPlib_pset1 as IVPlib
-import math
+
 
 
 ################################################################################
@@ -217,8 +218,8 @@ if __name__ == '__main__':
     tests_to_run = [run_test0, run_test1, run_test2, run_test3, run_test4]
 
     # You may change the following list to set the methods you would like to run on each test
-    methods_to_test = [IVPlib.step_FE]
-    # methods_to_test = [IVPlib.step_FE, IVPlib.step_RK4]
+    # methods_to_test = [IVPlib.step_FE]
+    methods_to_test = [IVPlib.step_FE, IVPlib.step_RK4]
 
     for test in tests_to_run:
         print()

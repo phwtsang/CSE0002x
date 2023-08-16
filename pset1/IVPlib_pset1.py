@@ -171,6 +171,8 @@ def step_RK4(thisIVP, dt, un, tn):
     for i in range(len(un)):
         un1.append(un[i] + 1/6*(a[i]+2*b[i]+2*c[i]+d[i]))
 
+    return un1
+
     #### END SOLUTION ####
 
 
@@ -207,7 +209,7 @@ def solve(thisIVP, dt, method):
     # Loop from t=tI to t>=tF
     #### BEGIN SOLUTION #####
     tF = thisIVP.get_tF()
-    while (tF-t[-1]) > dt/100.:
+    while (tF-t[-1]) > dt/10000.:
     #while t[-1]<tF:
         #t_next = t[-1] + dt
         #print(t_next)
