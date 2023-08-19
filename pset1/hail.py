@@ -31,9 +31,24 @@ class HailIVP(IVP):
         """
         #### BEGIN SOLUTION ####
         #### REMEMBER: use self.get_p to get values of any parameters needed
-        raise NotImplementedError("Implement evalf for HailIVP")
-        #### END SOLUTION ####
+        rho_a = self.get_p('rhoa')
+        rho_p = self.get_p('rhop')
+        d_p = self.get_p('dp')
+        C_d = self.get_p('CD')
+        g = self.get_p('g')
+        A_p = math.pi*d_p*d_p/4.
+        big_D = 0.5*rho_a*u[0]*u[0]*A_p*C_d
+        m = math.pi*rho_p*d_p**3/6
+        #print(rho_a,rho_p,d_p)
+        #print(C_d,g,A_p)
+        #print(big_D,m)
 
+        f = []
+        f.append(g-big_D/m)
+        f.append(-u[0])
+
+        #### END SOLUTION ####
+        return f
 
 ################################################################################
 ## Functions to solve hail trajectory IVP
@@ -54,7 +69,25 @@ def hail_Verror(hail_IVP, t, V):
         Vex (float list): exact (analytic solution) velocity values, Vex[n]
     """
     #### BEGIN SOLUTION ####
-    raise NotImplementedError("Calculate error between exact and numerical solutions of hail velocity")
+    rho_a = hail_IVP.get_p('rhoa')
+    rho_p = hail_IVP.get_p('rhop')
+    d_p = hail_IVP.get_p('dp')
+    C_d = hail_IVP.get_p('CD')
+    g = hail_IVP.get_p('g')
+    A_p = math.pi*d_p*d_p/4.
+    #big_D = 0.5*rho_a*u[0]*u[0]*A_p*C_d
+    m = math.pi*rho_p*d_p**3/6
+
+    v_term = (2*m*g/rho_a/A_p/C_d)**0.5
+    Vex = []
+    for ti in t:
+        Vex.append(v_term*math.tanh(g*ti/v_term))
+
+    e = []
+    for i in range(len(t)):
+        e.append(abs(V[i]-Vex[i]))
+
+    return e,Vex
     #### END SOLUTION ####
 
 
@@ -76,7 +109,11 @@ def hail_Veplot(t, V, Vex, e, method='numerical'):
         axs (array of Axes): handle to the Axes objects that comprise the figure's subplots
     """
     #### BEGIN SOLUTION ####
-    raise NotImplementedError("Implement hail_Veplot")
+    fig = plt.figure()
+    plt.plot(t,V)
+    plt.plot(t,Vex)
+    plt.plot(t,e)
+    plt.show()
     #### END SOLUTION ####
 
 
@@ -97,7 +134,10 @@ def hail_Vzplot(t, V, z, method='numerical'):
         axs (array of Axes): handle to the Axes objects that comprise the figure's subplots
     """
     #### BEGIN SOLUTION ####
-    raise NotImplementedError("Implement hail_Vzplot")
+    fig = plt.figure()
+    plt.plot(t,V)
+    plt.plot(t,z)
+    plt.show()
     #### END SOLUTION ####
 
 
